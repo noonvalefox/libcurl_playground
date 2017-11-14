@@ -1,0 +1,14 @@
+
+comparison of german vs english wikipedia graph with "informatik / computer_science" as root:
+
+"de.wikipedia.org/wiki/informatik" 2
+-------------------------------------
+next front size: 318
+next front size: 17756
+total number of links: 18074
+
+"wikipedia.org/computer_science" 2
+-----------------------------------
+next front size: 892
+next front size: 88823
+total number of links: 89715

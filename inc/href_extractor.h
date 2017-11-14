@@ -5,7 +5,7 @@
 #include "htmlstreamparser.h"
 
 #include <functional>
-#include <vector>
+#include <set>
 #include <string>
 
 class href_extractor
@@ -24,10 +24,10 @@ class href_extractor
   public:
     href_extractor();
     ~href_extractor();
-    std::vector<std::string> &extract(char *link);
+    std::set<std::string> &extract(std::string link);
     void setFilter(std::function<bool(std::string)> f);
 
-    std::vector<std::string> extractedLinks;
+    std::set<std::string> extractedLinks;
 };
 
 #endif /* HREF_EXTRACTOR_H */

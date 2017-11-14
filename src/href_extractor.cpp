@@ -17,7 +17,7 @@ size_t href_extractor::write_callback(void *buffer, size_t size, size_t nmemb,
   // extract members from object
   auto *hsp = static_cast<href_extractor *>(extractor)->hsp;
   auto filter = static_cast<href_extractor *>(extractor)->filter;
-  auto &list = static_cast<href_extractor *>(extractor)->extractedLinks;
+  auto &links = static_cast<href_extractor *>(extractor)->extractedLinks;
 
   size_t realsize = size * nmemb, p;
   for (p = 0; p < realsize; p++) {
@@ -30,7 +30,7 @@ size_t href_extractor::write_callback(void *buffer, size_t size, size_t nmemb,
           char *link = html_parser_val(hsp);
 
           if (filter(link))
-            list.push_back(link);
+            links.insert(link);
         }
   }
   return realsize;
@@ -52,10 +52,10 @@ href_extractor::~href_extractor() {
   html_parser_cleanup(hsp);
 }
 
-vector<string> &href_extractor::extract(char *link) {
+set<string> &href_extractor::extract(string link) {
   extractedLinks.clear();
 
-  curl_easy_setopt(curl, CURLOPT_URL, link);
+  curl_easy_setopt(curl, CURLOPT_URL, link.c_str());
   curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
   curl_easy_setopt(curl, CURLOPT_WRITEDATA,
                    this); // static callback workaround: pass pointer to object

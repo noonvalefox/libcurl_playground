@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/program",
-            "args": [],
+            "args": ["de.wikipedia.org/wiki/informatik", 1],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
